@@ -45,6 +45,6 @@ make clean
 ```
 ### Output displays the time taken to generate and sort the spatial_lookup structure.
 ```bash
-Sorting Time taken: 38.9772 ms
+Bitonic Sort (CUDA) - Sorting Time taken: 143.394 ms
 ```
 The spatial_lookup is a sorted copy of the particle array, where each particle is assigned a cell key based on its spatial position. This sorting groups particles that are spatially close together, making neighbor queries more efficient during the simulation.
