@@ -269,6 +269,24 @@ int main() {
 #endif
 
 
+    string sortingMethod;
+#ifdef USE_COUNTING_SORT
+    sortingMethod = "Counting Sort (CPU)";
+#elif defined(USE_BITONIC_SORT)
+    sortingMethod = "Bitonic Sort (CPU)";
+#elif defined(USE_MERGE_SORT)
+    sortingMethod = "Merge Sort (CPU)";
+#elif defined(USE_BUCKET_SORT)
+    sortingMethod = "Bucket Sort (CPU)";
+#elif defined(USE_COUNTING_SORT_CUDA)
+    sortingMethod = "Counting Sort (CUDA)";
+#elif defined(USE_BITONIC_SORT_CUDA)
+    sortingMethod = "Bitonic Sort (CUDA)";
+#else
+    sortingMethod = "Standard Sort";
+#endif
+
+
     auto grid_end = chrono::high_resolution_clock::now();
     // After sorting, remove the dummy particles if any were added.
     if (spatial_lookup.size() > num_particles) {
@@ -299,7 +317,7 @@ int main() {
     }
 
     chrono::duration<double, milli> elapsed = grid_end - grid_start;
-    cout << "Sorting Time taken: " << elapsed.count() << " ms" << endl;
+    cout << sortingMethod << " - Sorting Time taken: " << elapsed.count() << " ms" << endl;
 
     return 0;
 }
